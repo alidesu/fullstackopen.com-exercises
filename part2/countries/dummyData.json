@@ -1,0 +1,42 @@
+{
+    "request": {
+        "type": "City",
+        "query": "Sydney, Australia",
+        "language": "en",
+        "unit": "m"
+    },
+    "location": {
+        "name": "Sydney",
+        "country": "Australia",
+        "region": "New South Wales",
+        "lat": "-33.883",
+        "lon": "151.217",
+        "timezone_id": "Australia/Sydney",
+        "localtime": "2023-09-08 20:43",
+        "localtime_epoch": 1694205780,
+        "utc_offset": "10.0"
+    },
+    "current": {
+        "observation_time": "10:43 AM",
+        "temperature": 14,
+        "weather_code": 116,
+        "weather_icons": [
+            "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+        ],
+        "weather_descriptions": [
+            "Partly cloudy"
+        ],
+        "wind_speed": 22,
+        "wind_degree": 300,
+        "wind_dir": "WNW",
+        "pressure": 1020,
+        "precip": 0,
+        "humidity": 44,
+        "cloudcover": 25,
+        "feelslike": 12,
+        "uv_index": 1,
+        "visibility": 10,
+        "is_day": "no"
+    }
+}
+

@@ -1,0 +1,13 @@
+* {
+  font-family: JetBrains Mono;
+  background-color: antiquewhite;
+}
+
+img {
+  width: 180px;
+  max-height: 140px;
+}
+
+.flex {
+  display: flex;
+}
