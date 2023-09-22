@@ -15,7 +15,6 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const clickHandler = () => {
-    setConfirmMessage(`Added ${newName}`);
     const uploadName = { name: newName, number: phoneNumber };
     const existingPerson = persons.find(
       (person) => person.name === uploadName.name
@@ -31,14 +30,20 @@ const App = () => {
           .update(existingPerson.id, { ...existingPerson, number: phoneNumber })
           .then((response) => {
             const updatedPerson = response.data;
-            setPersons((prevPersons) =>
-              prevPersons.map((person) =>
-                person.id === updatedPerson.id ? updatedPerson : person
-              )
-            );
+            notesService
+              .getAll()
+              .then((response) => {
+                setPersons(response.data);
+              })
+              .catch((error) => {
+                console.error("Error fetching data:", error);
+                setErrorMessage("Error: " + error.response.data.error); // Set the error message
+              });
+            setConfirmMessage(`Updated ${newName}`);
           })
           .catch((error) => {
             console.error("Update failed:", error);
+            setErrorMessage("Error: " + error.response.data.error); // Set the error message
           });
       }
     } else {
@@ -47,8 +52,6 @@ const App = () => {
         .then((response) => {
           const newPerson = response.data;
           setPersons((prevPersons) => [...prevPersons, newPerson]);
-
-          // Fetch data after adding a new person
           notesService
             .getAll()
             .then((response) => {
@@ -56,10 +59,13 @@ const App = () => {
             })
             .catch((error) => {
               console.error("Error fetching data:", error);
+              setErrorMessage("Error: " + error.response.data.error); // Set the error message
             });
+          setConfirmMessage(`Added ${newName}`);
         })
         .catch((error) => {
           console.error("Create failed:", error);
+          setErrorMessage("Error: " + error.response.data.error); // Set the error message
         });
     }
 
@@ -68,7 +74,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    // Fetch data initially when the component mounts
     notesService
       .getAll()
       .then((response) => {
@@ -76,8 +81,9 @@ const App = () => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        setErrorMessage("Error: " + error.response.data.error); // Set the error message
       });
-  }, []); // Empty dependency array to run once on mount
+  }, []);
 
   return (
     <div>

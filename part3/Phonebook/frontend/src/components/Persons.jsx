@@ -26,7 +26,7 @@ const Persons = ({ persons, setPersons, setErrorMessage }) => {
       {Array.isArray(persons) && persons.length > 0 ? (
         persons.map((person, index) => (
           <div key={index}>
-            {person && person.name && person.number ? ( 
+            {person && person.name && person.number ? (
               <p>
                 {person.name} {person.number}{" "}
                 <button
